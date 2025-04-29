@@ -1,5 +1,5 @@
 
-export const runtime = 'edge'
+export const runtime = 'edge';
 
 import { NextResponse, NextRequest } from "next/server";
 import { cookies } from "next/headers";
@@ -14,13 +14,19 @@ export async function POST(req: NextRequest) {
    
     const newAccessToken ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"; // ตัวอย่าง token (JWT)
    
-    (await cookies()).set("token", newAccessToken, {
-        httpOnly: false,
-        secure: true,
-        sameSite: "strict",
-        path: "/",
-        maxAge: 60 * 60 * 24, // 1 วัน
-    });
+    // (await cookies()).set("token", newAccessToken, {
+    //     httpOnly: false,
+    //     secure: true,
+    //     sameSite: "strict",
+    //     path: "/",
+    //     maxAge: 60 * 60 * 24, // 1 วัน
+    // });
+
+         // ตั้ง cookie ด้วย header แทน cookies() function
+    req.headers.set(
+      "Set-Cookie",
+      `token=${newAccessToken}; Path=/; Max-Age=${60 * 60 * 24}; HttpOnly; Secure; SameSite=Strict`
+    );
 
     // ส่งข้อมูลกลับไปยัง client
     return NextResponse.json({ newAccessToken }, { status: 200 });

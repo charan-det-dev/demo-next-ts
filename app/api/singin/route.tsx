@@ -1,0 +1,29 @@
+"use server";
+import { NextResponse, NextRequest } from "next/server";
+import { cookies } from "next/headers";
+
+// API Route สำหรับ Sign-in
+export async function POST(req: NextRequest) {
+
+  const { email, password } = await req.json();
+
+  // ตรวจสอบข้อมูล เช่น ทำการเปรียบเทียบกับฐานข้อมูล
+  if (email === "user@example.com" && password === "password123") {
+   
+    const newAccessToken ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"; // ตัวอย่าง token (JWT)
+   
+    (await cookies()).set("token", newAccessToken, {
+        httpOnly: false,
+        secure: true,
+        sameSite: "strict",
+        path: "/",
+        maxAge: 60 * 60 * 24, // 1 วัน
+    });
+
+    // ส่งข้อมูลกลับไปยัง client
+    return NextResponse.json({ newAccessToken }, { status: 200 });
+  }
+
+  // หากข้อมูลไม่ถูกต้อง
+  return NextResponse.json({ message: "Invalid credentials" }, { status: 401 });
+}

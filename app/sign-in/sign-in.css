@@ -1,4 +1,8 @@
 /* Sign-in page container */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 div.sign-in-container {
   font-family: "Arial", sans-serif;
   background-color: #f7f7f7;
@@ -85,4 +89,25 @@ p.sign-in {
   color: red;
   font-size: 14px;
   margin-top: 15px;
+}
+
+.sign-in-image {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: baseline;
+  font-weight: bold;
+  color: #333333;
+}
+
+p.sign-in-cloudflare {
+  margin-right: 5px;
+}
+
+p.sign-in-developer-name {
+  font-size: 13px;
+  font-weight: 100;
 }

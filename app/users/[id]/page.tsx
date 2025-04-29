@@ -17,7 +17,6 @@ type User = {
 
 type UsersResponse = {
   user: User;
-  newAccessToken: string;
 };
 
 // services/userService.ts
@@ -38,8 +37,7 @@ export default function UsersPageClient({ params }: { params: Promise<{ id: stri
       name: "",
       avatar: "",
       createdAt: "",
-    },
-    newAccessToken: "",
+    }
   });
 
   const [loading, setLoading] = useState(true);
@@ -76,7 +74,6 @@ export default function UsersPageClient({ params }: { params: Promise<{ id: stri
               {res.user.id} : {res.user.name}
             </div>
             <div className="user-date">{res.user.createdAt}</div>
-             <p className="token">Token: { res.newAccessToken }</p>
           </div>
         </div>
       </div>

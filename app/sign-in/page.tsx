@@ -13,7 +13,7 @@ export default function SignInPage() {
 
     try {
 
-      const response = await fetch("/api/singin", {
+      const response = await fetch("/api/sing-in", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

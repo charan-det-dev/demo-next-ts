@@ -22,25 +22,18 @@ export async function GET(): Promise<NextResponse> {
     );
   }
 
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"; // ตัวอย่าง token (JWT)
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImNoYXJhbi1kZXQtZGV2IiwiaWF0IjoxNTE2MjM5MDIyfQ.jjn8BTBTth_WPPXnzRHCEqf56YF4p70DSqACmhAIMSo"; // ตัวอย่าง token (JWT)
   const users = (await res.json()) as Users[];
 
-    // (await cookies()).set("token", token, {
-    //   httpOnly: false,
-    //   secure: true,
-    //   sameSite: "strict",
-    //   path: "/",
-    //   maxAge: 60 * 60 * 24, // 1 วัน
-    // });
-
-      // ตั้ง cookie ด้วย header แทน cookies() function
-      res.headers.set(
-        "Set-Cookie",
-        `token=${token}; Path=/; Max-Age=${60 * 60 * 24}; HttpOnly; Secure; SameSite=Strict`
-      );
-
-  return NextResponse.json({
+  const response = NextResponse.json({
     user: users,
-    newAccessToken: token,
   });
+  
+  // ตั้ง cookie ผ่าน header
+  response.headers.set(
+    "Set-Cookie",
+    `token=${token}; Path=/; Max-Age=${60 * 60 * 24}; HttpOnly; Secure; SameSite=Strict`
+  );
+  
+  return response;
 }

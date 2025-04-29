@@ -15,7 +15,6 @@ type Users = {
 
 type UsersResponse = {
   user: Users[];
-  newAccessToken: string;
 };
 
 // services/userService.ts
@@ -30,7 +29,6 @@ async function fetchUsers() {
 export default function UsersPageClient() {
   const [res, setRes] = useState<UsersResponse>({
     user: [],
-    newAccessToken: "",
   });
   const [loading, setLoading] = useState(true);
   const router = useRouter();
@@ -77,11 +75,6 @@ export default function UsersPageClient() {
                   {user.id} : {user.name}
                 </div>
                 <div className="user-date">{user.createdAt}</div>
-                {res.newAccessToken === "" ? (
-                  <p className="warning">⚠️ Token ไม่พบหรือหมดอายุ</p>
-                ) : (
-                  <p className="token">Token: {res.newAccessToken}</p>
-                )}
               </div>
               <button
                 className="user-btn"

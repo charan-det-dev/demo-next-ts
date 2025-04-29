@@ -2,7 +2,7 @@
 export const runtime = 'edge';
 
 import { NextResponse, NextRequest } from "next/server";
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 
 // API Route สำหรับ Sign-in
 export async function POST(req: NextRequest) {

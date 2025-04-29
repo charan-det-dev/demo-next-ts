@@ -1,7 +1,7 @@
 
 export const runtime = 'edge'
 
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 type User = {

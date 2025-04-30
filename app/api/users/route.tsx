@@ -13,7 +13,7 @@ type Users = {
 
 export async function GET(): Promise<NextResponse> {
 
-  const BASE_URL = "https://67eb8588aa794fb3222a8a27.mockapi.io/api/d-charan/users";
+  const BASE_URL = "https://demo-go-api-akk6.onrender.com/users";
   const res = await fetch(BASE_URL);
   if (!res.ok) {
     return NextResponse.json(

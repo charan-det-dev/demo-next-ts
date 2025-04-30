@@ -74,7 +74,7 @@ export default function SignInPage() {
         />
       </div>
       <div className="sign-in-developer-name">
-        <p>✅ Developer By D.Charan & API Mock By mockapi.io ✅ </p>
+        <p>Developer By D.Charan & API Mock By mockapi.io</p>
       </div>
       <br />
     </div>

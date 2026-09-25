@@ -14,7 +14,7 @@ type User = {
 export async function GET(req: NextRequest, context: { params: Promise<{ id: string }> }): Promise<NextResponse> {
 
   const { id } = await context.params;
-  const BASE_URL = `https://67eb8588aa794fb3222a8a27.mockapi.io/api/d-charan/users/${id}`;
+  const BASE_URL = `http://localhost:8080/users/${id}`;
   const res = await fetch(BASE_URL);
   if (!res.ok) {
     return NextResponse.json(

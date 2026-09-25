@@ -13,7 +13,7 @@ type Users = {
 
 export async function GET(): Promise<NextResponse> {
 
-  const BASE_URL = "https://demo-go-api-akk6.onrender.com/users";
+  const BASE_URL = "http://localhost:8080/users";
   const res = await fetch(BASE_URL);
   if (!res.ok) {
     return NextResponse.json(
@@ -28,12 +28,12 @@ export async function GET(): Promise<NextResponse> {
   const response = NextResponse.json({
     user: users,
   });
-  
+
   // ตั้ง cookie ผ่าน header
   response.headers.set(
     "Set-Cookie",
     `token=${token}; Path=/; Max-Age=${60 * 60 * 24}; HttpOnly; Secure; SameSite=Strict`
   );
-  
+
   return response;
 }

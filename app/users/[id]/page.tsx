@@ -66,7 +66,7 @@ export default function UsersPageClient({ params }: { params: Promise<{ id: stri
   return (
     <div className={styles.userWrap}>
       <div className={styles.usersContainer}>
-        <h2 className={styles.heading}>Users Detail</h2>
+        <h2 className={styles.heading}>User Detail</h2>
         <div key={res.user.id} className={styles.userCard}>
           <div className={styles.avatarContainer}>
             <Image

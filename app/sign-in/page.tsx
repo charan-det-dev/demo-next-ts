@@ -65,16 +65,6 @@ export default function SignInPage() {
       <br />
       {error && <p className={styles.error}>{error}</p>}
       <br />
-      <div className={styles.signInImage}>
-      <p className={styles.signInCloudflare}>Server By</p>
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Cloudflare_Logo.svg/1024px-Cloudflare_Logo.svg.png?20220519022010"
-          alt="user"
-          width={100}
-          height={100}
-          className=""
-        />
-      </div>
       <div className={styles.developerName}>
         <p>Developer By D.Charan & API Mock By mockapi.io</p>
       </div>

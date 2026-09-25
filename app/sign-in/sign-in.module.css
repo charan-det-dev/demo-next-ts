@@ -74,19 +74,6 @@
   margin-top: 15px;
 }
 
-.signInImage {
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
-  font-weight: bold;
-  color: #333333;
-}
-
-.signInCloudflare {
-  margin-right: 5px;
-}
-
 .developerName {
   font-size: 13px;
   font-weight: 100;

@@ -2,11 +2,11 @@
 
 export const runtime = 'edge'
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Loading from "../../loading";
 import { use } from "react";
-import "../page.css";
+import styles from "./page.module.css";
 
 type User = {
   id: string;
@@ -31,6 +31,7 @@ async function fetchUserById(id: string) {
 export default function UsersPageClient({ params }: { params: Promise<{ id: string }> }) {
 
   const { id } = use(params); // ✅ ใช้ use() เพื่อ unwrap params
+  const fetchedId = useRef<string | null>(null);
   const [res, setRes] = useState<UsersResponse>({
     user: {
       id: "",
@@ -43,10 +44,17 @@ export default function UsersPageClient({ params }: { params: Promise<{ id: stri
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (fetchedId.current === id) {
+      return;
+    }
+
+    fetchedId.current = id;
+    setLoading(true);
 
     fetchUserById(id)
       .then(setRes)
       .catch((err) => {
+        fetchedId.current = null;
         console.error("Fetch error:", err);
       })
       .finally(() => setLoading(false));
@@ -56,24 +64,24 @@ export default function UsersPageClient({ params }: { params: Promise<{ id: stri
   if (loading) return Loading();
 
   return (
-    <div className="user-wrap">
-      <div className="users-container">
-        <h2 className="heading">Users Detail</h2>
-        <div key={res.user.id} className="user-card">
-          <div className="avatar-container">
+    <div className={styles.userWrap}>
+      <div className={styles.usersContainer}>
+        <h2 className={styles.heading}>Users Detail</h2>
+        <div key={res.user.id} className={styles.userCard}>
+          <div className={styles.avatarContainer}>
             <Image
               src={res.user.avatar}
               alt="user"
               width={100}
               height={100}
-              className="avatar"
+              className={styles.avatar}
             />
           </div>
-          <div className="user-info">
-            <div className="user-name">
+          <div className={styles.userInfo}>
+            <div className={styles.userName}>
               {res.user.id} : {res.user.name}
             </div>
-            <div className="user-date">{res.user.createdAt}</div>
+            <div className={styles.userDate}>{res.user.createdAt}</div>
           </div>
         </div>
       </div>

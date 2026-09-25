@@ -1,26 +1,16 @@
-/* Sign-in page container */
-body {
+.signInContainer {
   font-family: Arial, Helvetica, sans-serif;
-}
-
-div.sign-in-container {
-  font-family: "Arial", sans-serif;
   background-color: #f7f7f7;
-  width: 100%;
+  width: 100vw;
+  min-height: 100vh;
   padding: 5px;
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
-  align-content: center;
-  justify-content: flex-start;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
   margin-top: 1px;
 }
 
-/* Form container */
-form {
+.form {
   background-color: #ffffff;
   padding: 40px;
   border-radius: 8px;
@@ -30,16 +20,14 @@ form {
   text-align: center;
 }
 
-/* Title */
-h2 {
+.title {
   font-size: 24px;
   color: #333;
   margin-bottom: 20px;
   font-weight: bold;
 }
 
-/* Form labels */
-label {
+.label {
   font-size: 14px;
   color: #555;
   margin-bottom: 8px;
@@ -47,11 +35,10 @@ label {
   text-align: left;
 }
 
-/* Input fields */
-input {
+.input {
   width: 100%;
   padding: 12px;
-  margin: 10px 0 20px 0;
+  margin: 10px 0 20px;
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 14px;
@@ -60,14 +47,12 @@ input {
   transition: border-color 0.3s ease;
 }
 
-/* Focus effect on input */
-input:focus {
+.input:focus {
   border-color: rgb(255, 174, 0);
   outline: none;
 }
 
-/* Submit button */
-button.sign-in-button {
+.signInButton {
   background-color: rgb(255, 174, 0);
   color: white;
   padding: 12px 20px;
@@ -79,35 +64,30 @@ button.sign-in-button {
   transition: background-color 0.3s ease;
 }
 
-/* Button hover effect */
-button.sign-in:hover {
-  background-color:  rgb(219, 150, 2);
+.signInButton:hover {
+  background-color: rgb(219, 150, 2);
 }
 
-/* Error message */
-p.sign-in {
+.error {
   color: red;
   font-size: 14px;
   margin-top: 15px;
 }
 
-.sign-in-image {
+.signInImage {
   width: 100vw;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-content: center;
   justify-content: center;
   align-items: baseline;
   font-weight: bold;
   color: #333333;
 }
 
-p.sign-in-cloudflare {
+.signInCloudflare {
   margin-right: 5px;
 }
 
-p.sign-in-developer-name {
+.developerName {
   font-size: 13px;
   font-weight: 100;
 }

@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import "./sign-in.css";
+import styles from "./sign-in.module.css";
 
 export default function SignInPage() {
   const [email, setEmail] = useState("");
@@ -34,13 +34,14 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="sign-in-container">
+    <div className={styles.signInContainer}>
       <br />
-      <h2>Sign In</h2>
-      <form onSubmit={handleSubmit}>
+      <h2 className={styles.title}>Sign In</h2>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <div>
-          <label>Email:</label>
+          <label className={styles.label}>Email:</label>
           <input
+            className={styles.input}
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -48,23 +49,24 @@ export default function SignInPage() {
           />
         </div>
         <div>
-          <label>Password:</label>
+          <label className={styles.label}>Password:</label>
           <input
+            className={styles.input}
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
-        <button className="sign-in-button sign-in" type="submit">
+        <button className={styles.signInButton} type="submit">
           Sign In
         </button>
       </form>
       <br />
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className={styles.error}>{error}</p>}
       <br />
-      <div className="sign-in-image">
-      <p className="sign-in-cloudflare">Server By</p>
+      <div className={styles.signInImage}>
+      <p className={styles.signInCloudflare}>Server By</p>
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Cloudflare_Logo.svg/1024px-Cloudflare_Logo.svg.png?20220519022010"
           alt="user"
@@ -73,7 +75,7 @@ export default function SignInPage() {
           className=""
         />
       </div>
-      <div className="sign-in-developer-name">
+      <div className={styles.developerName}>
         <p>Developer By D.Charan & API Mock By mockapi.io</p>
       </div>
       <br />

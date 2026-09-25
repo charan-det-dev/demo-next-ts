@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Loading from "../loading";
-import "./page.css";
+import styles from "./page.module.css";
 
 type Users = {
   id: string;
@@ -51,33 +51,33 @@ export default function UsersPageClient() {
   };
 
   return (
-    <div className="users-wrap">
-      <div className="users-container">
-        {res.user.length !== 0 && <h2 className="heading">Users List</h2>}
+    <div className={styles.usersWrap}>
+      <div className={styles.usersContainer}>
+        {res.user.length !== 0 && <h2 className={styles.heading}>Users List</h2>}
         {res.user.length === 0 ? (
-          <p className="error-message">
+          <p className={styles.errorMessage}>
             🚨 ไม่สามารถโหลดข้อมูลผู้ใช้ได้ หรือไม่มีข้อมูล
           </p>
         ) : (
           res.user.map((user) => (
-            <div key={user.id} className="user-card">
-              <div className="avatar-container">
+            <div key={user.id} className={styles.userCard}>
+              <div className={styles.avatarContainer}>
                 <Image
                   src={user.avatar}
                   alt="user"
                   width={100}
                   height={100}
-                  className="avatar"
+                  className={styles.avatar}
                 />
               </div>
-              <div className="user-info">
-                <div className="user-name">
+              <div className={styles.userInfo}>
+                <div className={styles.userName}>
                   {user.id} : {user.name}
                 </div>
-                <div className="user-date">{user.createdAt}</div>
+                <div className={styles.userDate}>{user.createdAt}</div>
               </div>
               <button
-                className="user-btn"
+                className={styles.userButton}
                 onClick={() => handleViewUser(user.id)}
               >
                 View

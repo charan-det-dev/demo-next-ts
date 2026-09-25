@@ -1,8 +1,7 @@
 
 export const runtime = 'edge'
 
-// import { cookies } from "next/headers";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 type Users = {
   id: string;
@@ -11,9 +10,9 @@ type Users = {
   createdAt: string;
 };
 
-export async function GET(): Promise<NextResponse> {
+export async function GET(req: NextRequest): Promise<NextResponse> {
 
-  const BASE_URL = "http://localhost:8080/users";
+  const BASE_URL = `${process.env.USERS_API_BASE_URL ?? "http://localhost:8080"}/users`;
   const res = await fetch(BASE_URL);
   if (!res.ok) {
     return NextResponse.json(
@@ -29,11 +28,14 @@ export async function GET(): Promise<NextResponse> {
     user: users,
   });
 
-  // ตั้ง cookie ผ่าน header
-  response.headers.set(
-    "Set-Cookie",
-    `token=${token}; Path=/; Max-Age=${60 * 60 * 24}; HttpOnly; Secure; SameSite=Strict`
-  );
+  response.cookies.set("token", token, {
+    httpOnly: true,
+    secure:
+      process.env.COOKIE_SECURE === "true" || req.nextUrl.protocol === "https:",
+    sameSite: "strict",
+    path: "/",
+    maxAge: 60 * 60 * 24,
+  });
 
   return response;
 }

@@ -8,7 +8,6 @@ export async function GET() {
     
   const cookieStore = cookies(); // <-- ทำงานได้ใน Edge/Server
   const token = (await cookieStore).get("token")?.value;
-  console.log("check-authen token:", token);
 
   if (token) {
     return NextResponse.json({ isAuthenticated: true });

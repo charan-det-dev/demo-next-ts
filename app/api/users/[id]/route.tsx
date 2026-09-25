@@ -14,7 +14,7 @@ type User = {
 export async function GET(req: NextRequest, context: { params: Promise<{ id: string }> }): Promise<NextResponse> {
 
   const { id } = await context.params;
-  const BASE_URL = `http://localhost:8080/users/${id}`;
+  const BASE_URL = `${process.env.USERS_API_BASE_URL ?? "http://localhost:8080"}/users/${id}`;
   const res = await fetch(BASE_URL);
   if (!res.ok) {
     return NextResponse.json(
@@ -32,11 +32,14 @@ export async function GET(req: NextRequest, context: { params: Promise<{ id: str
     user: users,
   });
   
-  // ตั้ง cookie ผ่าน header
-  response.headers.set(
-    "Set-Cookie",
-    `token=${token}; Path=/; Max-Age=${60 * 60 * 24}; HttpOnly; Secure; SameSite=Strict`
-  );
+  response.cookies.set("token", token, {
+    httpOnly: true,
+    secure:
+      process.env.COOKIE_SECURE === "true" || req.nextUrl.protocol === "https:",
+    sameSite: "strict",
+    path: "/",
+    maxAge: 60 * 60 * 24,
+  });
   
   return response;
 }
